@@ -1,0 +1,71 @@
+# ==========================
+# Java / Spring Boot
+# ==========================
+# Compiled classes
+**/target/
+*.class
+
+# Maven wrapper (optional – keep if you want to commit wrapper)
+.mvn/wrapper/maven-wrapper.jar
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Log files
+*.log
+
+# Spring Boot configuration (local overrides)
+application-local.properties
+application-dev.properties
+
+# ==========================
+# Frontend (React / Vite)
+# ==========================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# ==========================
+# IDE / Editor
+# ==========================
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ==========================
+# OS generated files
+# ==========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==========================
+# Environment / Secrets
+# ==========================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+
+# ==========================
+# Database (if local)
+# ==========================
+*.db
+*.sqlite
+*.h2.db
+
+# ==========================
+# Misc
+# ==========================
+*.log
+*.pid
+*.seed
+*.lock
