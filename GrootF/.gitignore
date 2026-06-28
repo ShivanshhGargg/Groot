@@ -1,0 +1,20 @@
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+coverage/
+pubspec.lock
+
+# IDEs
+.idea/
+.vscode/
+
+# Local environment
+.env
+
+# Generated web builds
+web/flutter.js
+web/flutter_service_worker.js
+
+flutter_frontend_dump.txt
