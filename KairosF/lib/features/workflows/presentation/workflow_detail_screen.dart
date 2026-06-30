@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme.dart';
-import '../../../core/models/Kairos_models.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../core/models/kairos_models.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/status_pill.dart';
 
@@ -16,7 +16,7 @@ class WorkflowDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(KairosRepositoryProvider);
+    final data = ref.watch(kairosRepositoryProvider);
     final workflow = data.workflowById(id);
 
     if (workflow == null) {
@@ -87,9 +87,9 @@ class _WorkflowStatus extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final workflow = ref.watch(KairosRepositoryProvider).workflowById(id)!;
+    final workflow = ref.watch(kairosRepositoryProvider).workflowById(id)!;
     return KairosCard(
-      borderColor: stateColor.withOpacity(0.28),
+      borderColor: stateColor.withValues(alpha: 0.28),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -104,7 +104,7 @@ class _WorkflowStatus extends ConsumerWidget {
           LinearProgressIndicator(
             value: workflow.snoozesUsed / 3,
             color: workflow.snoozesUsed >= 3 ? KairosColors.critical : stateColor,
-            backgroundColor: stateColor.withOpacity(0.12),
+            backgroundColor: stateColor.withValues(alpha: 0.12),
             minHeight: 8,
             borderRadius: BorderRadius.circular(KairosRadius.sm),
           ),
@@ -119,7 +119,7 @@ class _WorkflowStatus extends ConsumerWidget {
                 icon: const Icon(Icons.done_rounded),
                 label: const Text('Complete'),
                 onPressed: () {
-                  ref.read(KairosRepositoryProvider.notifier).resolveWorkflow(id);
+                  ref.read(kairosRepositoryProvider.notifier).resolveWorkflow(id);
                 },
               ),
               OutlinedButton.icon(
@@ -128,7 +128,7 @@ class _WorkflowStatus extends ConsumerWidget {
                 onPressed: workflow.snoozesUsed >= 3
                     ? null
                     : () {
-                        ref.read(KairosRepositoryProvider.notifier).snoozeWorkflow(id);
+                        ref.read(kairosRepositoryProvider.notifier).snoozeWorkflow(id);
                       },
               ),
               OutlinedButton.icon(
@@ -155,7 +155,7 @@ class _WorkflowSteps extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final workflow = ref.watch(KairosRepositoryProvider).workflowById(id)!;
+    final workflow = ref.watch(kairosRepositoryProvider).workflowById(id)!;
     return KairosCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

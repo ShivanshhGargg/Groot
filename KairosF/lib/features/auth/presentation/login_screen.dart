@@ -49,7 +49,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               children: [
                 Center(
                   child: Image.asset(
-                    'assets/brand/Kairos-mark.png',
+                    'assets/brand/kairos-mark.png',
                     width: 72,
                     height: 72,
                   ),

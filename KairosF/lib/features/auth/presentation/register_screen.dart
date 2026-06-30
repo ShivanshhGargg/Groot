@@ -51,7 +51,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               children: [
                 Center(
                   child: Image.asset(
-                    'assets/brand/Kairos-mark.png',
+                    'assets/brand/kairos-mark.png',
                     width: 72,
                     height: 72,
                   ),

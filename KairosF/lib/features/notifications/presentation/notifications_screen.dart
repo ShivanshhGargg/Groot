@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme.dart';
-import '../../../core/models/Kairos_models.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../core/models/kairos_models.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/status_pill.dart';
 
@@ -14,7 +14,7 @@ class NotificationsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifications = ref.watch(KairosRepositoryProvider).notifications;
+    final notifications = ref.watch(kairosRepositoryProvider).notifications;
     final unread = notifications.where((notification) => !notification.read).length;
 
     return PageScaffold(
@@ -27,7 +27,7 @@ class NotificationsScreen extends ConsumerWidget {
           onPressed: notifications.isEmpty
               ? null
               : () {
-                  ref.read(KairosRepositoryProvider.notifier).markAllNotificationsRead();
+                  ref.read(kairosRepositoryProvider.notifier).markAllNotificationsRead();
                 },
         ),
       ],
@@ -54,9 +54,9 @@ class _NotificationCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final color = _colorForType(notification.type);
     return KairosCard(
-      borderColor: notification.read ? null : color.withOpacity(0.28),
+      borderColor: notification.read ? null : color.withValues(alpha: 0.28),
       onTap: () {
-        ref.read(KairosRepositoryProvider.notifier).markNotificationRead(notification.id);
+        ref.read(kairosRepositoryProvider.notifier).markNotificationRead(notification.id);
         context.go(notification.deepLink);
       },
       child: Row(

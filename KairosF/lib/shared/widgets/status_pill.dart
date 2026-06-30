@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app/theme.dart';
-import '../../core/models/Kairos_models.dart';
+import '../../core/models/kairos_models.dart';
 
 class StatusPill extends StatelessWidget {
   const StatusPill({
@@ -21,9 +21,9 @@ class StatusPill extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 32),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(KairosRadius.md),
-        border: Border.all(color: color.withOpacity(0.24)),
+        border: Border.all(color: color.withValues(alpha: 0.24)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

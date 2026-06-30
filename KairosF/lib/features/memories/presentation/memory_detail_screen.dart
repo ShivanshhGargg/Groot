@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../../../shared/widgets/status_pill.dart';
-import '../../../core/models/Kairos_models.dart';
+import '../../../core/models/kairos_models.dart';
 
 class MemoryDetailScreen extends ConsumerWidget {
   const MemoryDetailScreen({required this.id, super.key});
@@ -17,7 +17,7 @@ class MemoryDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(KairosRepositoryProvider);
+    final data = ref.watch(kairosRepositoryProvider);
     final memory = data.memoryById(id);
 
     if (memory == null) {
@@ -81,7 +81,7 @@ class _DetailsPanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(KairosRepositoryProvider);
+    final data = ref.watch(kairosRepositoryProvider);
     final memory = data.memoryById(memoryId)!;
     final confidence = confidenceColor(memory.confidenceLevel);
 
@@ -132,7 +132,7 @@ class _DetailsPanel extends ConsumerWidget {
                     icon: const Icon(Icons.check_rounded),
                     label: const Text('Confirm'),
                     onPressed: () {
-                      ref.read(KairosRepositoryProvider.notifier).confirmMemory(memory.id);
+                      ref.read(kairosRepositoryProvider.notifier).confirmMemory(memory.id);
                     },
                   ),
                   OutlinedButton.icon(
@@ -166,7 +166,7 @@ class _TimelinePanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final memory = ref.watch(KairosRepositoryProvider).memoryById(memoryId)!;
+    final memory = ref.watch(kairosRepositoryProvider).memoryById(memoryId)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

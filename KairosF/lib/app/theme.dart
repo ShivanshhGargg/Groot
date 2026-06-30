@@ -187,7 +187,7 @@ class KairosTheme {
       ),
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: scaffold,
-        indicatorColor: primary.withOpacity(0.12),
+        indicatorColor: primary.withValues(alpha: 0.12),
         selectedIconTheme: IconThemeData(color: primary),
         selectedLabelTextStyle: textTheme.bodyMedium?.copyWith(
           color: primary,
@@ -196,9 +196,9 @@ class KairosTheme {
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: surface,
-        indicatorColor: primary.withOpacity(0.12),
-        labelTextStyle: MaterialStateProperty.resolveWith((states) {
-          final selected = states.contains(MaterialState.selected);
+        indicatorColor: primary.withValues(alpha: 0.12),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
           return textTheme.labelSmall?.copyWith(
             color: selected ? primary : textSecondary,
           );
@@ -206,7 +206,7 @@ class KairosTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: surface,
-        selectedColor: primary.withOpacity(0.12),
+        selectedColor: primary.withValues(alpha: 0.12),
         side: BorderSide(color: border),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(KairosRadius.md),

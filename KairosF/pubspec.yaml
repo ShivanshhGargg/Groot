@@ -1,4 +1,4 @@
-name: Kairos_app
+name: kairos_app
 description: Flutter web and PWA frontend for the Kairos AI Manager MVP.
 publish_to: 'none'
 version: 0.1.0+1
@@ -24,4 +24,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/brand/Kairos-mark.png
+    - assets/brand/kairos-mark.png

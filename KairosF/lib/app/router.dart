@@ -12,7 +12,7 @@ import '../features/memories/presentation/memory_detail_screen.dart';
 import '../features/notifications/presentation/notifications_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
 import '../features/workflows/presentation/workflow_detail_screen.dart';
-import '../shared/widgets/Kairos_shell.dart';
+import '../shared/widgets/kairos_shell.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authControllerProvider);

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/theme.dart';
 import '../../../features/auth/application/auth_controller.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/section_header.dart';
 
@@ -13,7 +13,7 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(KairosRepositoryProvider);
+    final data = ref.watch(kairosRepositoryProvider);
     final profile = data.profile;
 
     return PageScaffold(
@@ -60,7 +60,7 @@ class ProfileScreen extends ConsumerWidget {
 class _IdentityPanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profile = ref.watch(KairosRepositoryProvider).profile;
+    final profile = ref.watch(kairosRepositoryProvider).profile;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -97,7 +97,7 @@ class _IdentityPanel extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: KairosSpacing.lg),
-              _ProfileRow(label: 'Inbox', value: profile.KairosInboxAddress),
+              _ProfileRow(label: 'Inbox', value: profile.kairosInboxAddress),
               _ProfileRow(label: 'Timezone', value: profile.timezone),
               _ProfileRow(label: 'Currency', value: profile.currency),
             ],
@@ -153,7 +153,7 @@ class _IdentityPanel extends ConsumerWidget {
 class _PreferencesPanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profile = ref.watch(KairosRepositoryProvider).profile;
+    final profile = ref.watch(kairosRepositoryProvider).profile;
     final themeMode = ref.watch(themeModeProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,7 +204,7 @@ class _PreferencesPanel extends ConsumerWidget {
                       label: Text(time),
                       selected: profile.dailyBriefingTime == time,
                       onSelected: (_) {
-                        ref.read(KairosRepositoryProvider.notifier).updateProfile(
+                        ref.read(kairosRepositoryProvider.notifier).updateProfile(
                               dailyBriefingTime: time,
                             );
                       },
@@ -219,7 +219,7 @@ class _PreferencesPanel extends ConsumerWidget {
               Slider(
                 value: profile.notificationIntensity,
                 onChanged: (value) {
-                  ref.read(KairosRepositoryProvider.notifier).updateProfile(
+                  ref.read(kairosRepositoryProvider.notifier).updateProfile(
                         notificationIntensity: value,
                       );
                 },
@@ -230,7 +230,7 @@ class _PreferencesPanel extends ConsumerWidget {
                 secondary: const Icon(Icons.notifications_active_outlined),
                 value: profile.pushEnabled,
                 onChanged: (value) {
-                  ref.read(KairosRepositoryProvider.notifier).updateProfile(
+                  ref.read(kairosRepositoryProvider.notifier).updateProfile(
                         pushEnabled: value,
                       );
                 },
@@ -241,7 +241,7 @@ class _PreferencesPanel extends ConsumerWidget {
                 secondary: const Icon(Icons.mark_email_read_outlined),
                 value: profile.emailEnabled,
                 onChanged: (value) {
-                  ref.read(KairosRepositoryProvider.notifier).updateProfile(
+                  ref.read(kairosRepositoryProvider.notifier).updateProfile(
                         emailEnabled: value,
                       );
                 },

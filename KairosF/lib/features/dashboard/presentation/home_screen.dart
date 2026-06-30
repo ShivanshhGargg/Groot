@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/theme.dart';
-import '../../../core/models/Kairos_models.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../core/models/kairos_models.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../../../shared/widgets/status_pill.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(KairosRepositoryProvider);
+    final data = ref.watch(kairosRepositoryProvider);
     final profile = data.profile;
     final today = DateFormat('EEEE, MMM d').format(DateTime.now());
 
@@ -152,7 +152,7 @@ class _NextMoveCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return KairosCard(
-      borderColor: theme.colorScheme.primary.withOpacity(0.35),
+      borderColor: theme.colorScheme.primary.withValues(alpha: 0.35),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -163,7 +163,7 @@ class _NextMoveCard extends ConsumerWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.primary.withOpacity(0.12),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(KairosRadius.md),
                 ),
                 child: Icon(
@@ -222,7 +222,7 @@ class _NextMoveCard extends ConsumerWidget {
                 icon: const Icon(Icons.done_rounded),
                 label: const Text('Done'),
                 onPressed: () {
-                  ref.read(KairosRepositoryProvider.notifier).completeNextMove();
+                  ref.read(kairosRepositoryProvider.notifier).completeNextMove();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Marked complete.')),
                   );
@@ -232,7 +232,7 @@ class _NextMoveCard extends ConsumerWidget {
                 icon: const Icon(Icons.snooze_rounded),
                 label: const Text('Snooze'),
                 onPressed: () {
-                  ref.read(KairosRepositoryProvider.notifier).snoozeNextMove();
+                  ref.read(kairosRepositoryProvider.notifier).snoozeNextMove();
                 },
               ),
             ],
@@ -288,7 +288,7 @@ class _RiskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = confidenceColor(risk.severity);
     return KairosCard(
-      borderColor: color.withOpacity(0.28),
+      borderColor: color.withValues(alpha: 0.28),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

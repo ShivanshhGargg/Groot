@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/theme.dart';
-import '../../../core/models/Kairos_models.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../core/models/kairos_models.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../../../shared/widgets/status_pill.dart';
@@ -28,17 +28,17 @@ class _InboxScreenState extends ConsumerState<InboxScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final data = ref.watch(KairosRepositoryProvider);
+    final data = ref.watch(kairosRepositoryProvider);
 
     return PageScaffold(
       title: 'Manager Inbox',
-      subtitle: data.profile.KairosInboxAddress,
+      subtitle: data.profile.kairosInboxAddress,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final wide = constraints.maxWidth >= 920;
           final capture = _CapturePanel(
             textController: _textController,
-            inboxAddress: data.profile.KairosInboxAddress,
+            inboxAddress: data.profile.kairosInboxAddress,
             onSubmit: _submitText,
             onPickFiles: _pickFiles,
           );
@@ -69,7 +69,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen> {
   }
 
   void _submitText() {
-    ref.read(KairosRepositoryProvider.notifier).submitText(_textController.text);
+    ref.read(kairosRepositoryProvider.notifier).submitText(_textController.text);
     _textController.clear();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Added to review queue.')),
@@ -95,7 +95,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen> {
 
     if (!mounted || result == null) return;
     final fileNames = result.files.map((file) => file.name).join(', ');
-    ref.read(KairosRepositoryProvider.notifier).submitText('Uploaded $fileNames');
+    ref.read(kairosRepositoryProvider.notifier).submitText('Uploaded $fileNames');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Uploaded ${result.files.length} file(s).')),
     );
@@ -232,7 +232,7 @@ class _NeedsReviewCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final color = confidenceColor(item.confidenceLevel);
     return KairosCard(
-      borderColor: color.withOpacity(0.28),
+      borderColor: color.withValues(alpha: 0.28),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -272,7 +272,7 @@ class _NeedsReviewCard extends ConsumerWidget {
                 icon: const Icon(Icons.check_rounded),
                 label: const Text('Confirm'),
                 onPressed: () {
-                  ref.read(KairosRepositoryProvider.notifier).confirmReview(item.id);
+                  ref.read(kairosRepositoryProvider.notifier).confirmReview(item.id);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Memory created.')),
                   );
@@ -291,7 +291,7 @@ class _NeedsReviewCard extends ConsumerWidget {
                 icon: const Icon(Icons.archive_outlined),
                 label: const Text('Ignore'),
                 onPressed: () {
-                  ref.read(KairosRepositoryProvider.notifier).ignoreReview(item.id);
+                  ref.read(kairosRepositoryProvider.notifier).ignoreReview(item.id);
                 },
               ),
             ],

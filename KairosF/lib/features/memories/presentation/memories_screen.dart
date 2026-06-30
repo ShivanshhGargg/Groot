@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme.dart';
-import '../../../core/models/Kairos_models.dart';
-import '../../../shared/data/Kairos_repository.dart';
-import '../../../shared/widgets/Kairos_card.dart';
+import '../../../core/models/kairos_models.dart';
+import '../../../shared/data/kairos_repository.dart';
+import '../../../shared/widgets/kairos_card.dart';
 import '../../../shared/widgets/page_scaffold.dart';
 import '../../../shared/widgets/status_pill.dart';
 
@@ -22,7 +22,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final memories = ref.watch(KairosRepositoryProvider).memories.where((memory) {
+    final memories = ref.watch(kairosRepositoryProvider).memories.where((memory) {
       final matchesQuery = _query.isEmpty ||
           memory.title.toLowerCase().contains(_query.toLowerCase()) ||
           memory.metadata.values.any(
